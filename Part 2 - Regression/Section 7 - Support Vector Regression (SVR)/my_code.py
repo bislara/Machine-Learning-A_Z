@@ -15,6 +15,7 @@ y = dataset.iloc[:, 2].values
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)"""
 
 # Feature Scaling
+#SVR class doesnot include feature scalling..So have to include it..
 from sklearn.preprocessing import StandardScaler
 sc_X = StandardScaler()
 sc_y = StandardScaler()
@@ -25,10 +26,13 @@ y = sc_y.fit_transform(dataset.iloc[:, 2:].values)
 from sklearn.svm import SVR
 regressor = SVR(kernel = 'rbf')
 regressor.fit(X, y)
+#last data point doesnot match as it is very far away from rest points
+
 
 # Predicting a new result
 y_pred = regressor.predict(sc_X.transform([[6.5]]))
 y_pred = sc_y.inverse_transform(y_pred)
+
 
 # Visualising the SVR results
 plt.scatter(X, y, color = 'red')

@@ -38,6 +38,11 @@ y_pred = classifier.predict(X_test)
 from sklearn.metrics import confusion_matrix
 cm = confusion_matrix(y_test, y_pred)
 
+from sklearn.metrics import accuracy_score 
+accu=accuracy_score(y_test,y_pred ) 
+print("The accuracy is found to be ",accu)
+
+
 # Visualising the Training set results
 from matplotlib.colors import ListedColormap
 X_set, y_set = X_train, y_train
