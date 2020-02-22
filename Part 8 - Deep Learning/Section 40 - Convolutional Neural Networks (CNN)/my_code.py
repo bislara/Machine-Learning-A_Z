@@ -10,7 +10,7 @@ Created on Wed Jan  8 03:37:06 2020
 
 # Importing the Keras libraries and packages
 from keras.models import Sequential
-from keras.layers import Convolution2D
+from keras.layers import Conv2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
@@ -20,7 +20,7 @@ import sys
 classifier = Sequential()
 
 # Step 1 - Convolution
-classifier.add(Convolution2D(32, 3, 3, input_shape = (64, 64, 3), activation = 'relu'))
+classifier.add(Conv2D(32, 3, 3, input_shape = (64, 64, 3), activation = 'relu'))
 #convolution2D paramters are...(number of feature detectors, no of rows in each, no of columns in each)
 #  input_shape= (no of channels- RGB, no of pixels)
 
@@ -29,7 +29,7 @@ classifier.add(Convolution2D(32, 3, 3, input_shape = (64, 64, 3), activation = '
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Adding a second convolutional layer
-classifier.add(Convolution2D(32, 3, 3, activation = 'relu'))
+classifier.add(Conv2D(32, 3, 3, activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size = (2, 2)))
 
 # Step 3 - Flattening
@@ -67,6 +67,6 @@ test_set = test_datagen.flow_from_directory('dataset/test_set',
 
 classifier.fit_generator(training_set,
                          samples_per_epoch = 8000,
-                         nb_epoch = 25,
+                         epochs = 25,
                          validation_data = test_set,
-                         nb_val_samples = 2000)
+                         validation_steps = 2000)
